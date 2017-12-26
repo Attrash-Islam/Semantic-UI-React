@@ -29,7 +29,7 @@ const formatError = (msg) => {
 export default (karmaConfig) => {
   karmaConfig.set({
     basePath: process.cwd(),
-    browsers: ['puppeteer'],
+    browsers: ['FirefoxHeadless'],
     client: {
       mocha: {
         reporter: 'html', // change Karma's debug.html to mocha web reporter
@@ -52,6 +52,10 @@ export default (karmaConfig) => {
           // Avoid "Maximum call stack size exceeded" errors on CircleCI
           '--stack-trace-limit 200000',
         ],
+      },
+      FirefoxHeadless: {
+        base: 'Firefox',
+        flags: [ '-headless' ],
       },
     },
     files: [
